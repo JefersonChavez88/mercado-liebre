@@ -2,12 +2,11 @@
 const path = require ('path');
 const express = require('express');
 const app = express();
-const puerto = 3030;
 
 // configuraciones
 const publicPath = path.resolve ( __dirname, './public');
 app.use(express.static(publicPath));
-app.set('puerto',process.env.PORT || 3030);
+app.set('puerto',process.env.PORT || 3000);
 
 //rutas
 app.get('/',(req,res)=>{
@@ -29,4 +28,8 @@ app.get('/crearProducto',(req,res)=>{
 });
 
 //levantar nuestro server
-app.listen (app.get('puerto'), ()=> console.log('servidor corriendo de manera satisfactoria ${app.get('puerto')}' ));
+const PORT= process.env.PORT || 3000
+
+app.listen(PORT, function(){
+    console.log("servidor escuchando en el puerto", PORT)
+})
